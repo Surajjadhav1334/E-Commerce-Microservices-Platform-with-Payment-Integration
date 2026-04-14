@@ -1,0 +1,16 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg-container {
+  background-image: url('https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?cs=srgb&dl=cascade-clouds-cool-wallpaper-210186.jpg&fm=jpg');
+  height: 100vh;
+  background-size: cover;        /* 👈 FULL SCREEN FIT */
+  background-position: center;   /* 👈 CENTER */
+  background-repeat: no-repeat;  /* 👈 NO REPEAT */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

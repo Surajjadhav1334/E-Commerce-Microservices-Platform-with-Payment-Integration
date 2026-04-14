@@ -1,0 +1,135 @@
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <div class="sidebar bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+    <h3>User</h3>
+
+    <ul class="nav flex-column">
+
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="setView('products')">
+          <i class="fas fa-box"></i> View Products
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="setView('orders')">
+          <i class="fas fa-list"></i> My Orders
+        </a>
+      </li>
+
+    </ul>
+
+    <button class="btn btn-danger mt-3 w-100" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div class="content p-4 w-100">
+    <h2>User Dashboard 👤</h2>
+
+    <!-- ✅ PRODUCTS -->
+    <div *ngIf="view==='products'" class="mt-3">
+
+      <div class="row">
+        <div class="col-md-3" *ngFor="let p of products">
+          <div class="card p-3 shadow">
+
+            <h5>{{p.name}}</h5>
+            <p>₹ {{p.price}}</p>
+
+            <button class="btn btn-primary"
+              (click)="placeOrder(p)">
+              Order Now
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ✅ ORDERS -->
+    <div *ngIf="view==='orders'" class="mt-3">
+
+      <table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Product</th>
+      <th>User</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Total</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let o of orders">
+      <td>{{o.id}}</td>
+      <td>{{o.productName}}</td>
+      <td>{{o.username}}</td>
+      <td>{{o.price}}</td>
+      <td>{{o.quantity}}</td>
+      <td>{{o.price * o.quantity}}</td> <!-- 🔥 auto total -->
+       <td>
+  <button class="btn btn-success btn-sm" (click)="pay(o)">
+    Pay
+  </button>
+
+  <button class="btn btn-warning btn-sm mx-1" (click)="editOrder(o)">
+    Edit
+  </button>
+
+  <button class="btn btn-danger btn-sm" (click)="deleteOrder(o.id)">
+    Delete
+  </button>
+</td>
+    </tr>
+
+  </tbody>
+</table>
+
+    </div>
+
+    <!-- ✅ UPDATE ORDER -->
+    <div *ngIf="selectedOrder" class="card p-3 mt-3 shadow">
+      <h4>Update Order</h4>
+
+      <!-- <input class="form-control mb-2"
+        [(ngModel)]="selectedOrder.amount"
+        type="number"> -->
+
+        <input class="form-control mb-2"
+    [(ngModel)]="selectedOrder.id"
+    readonly>
+
+  <!-- Product Name -->
+  <input class="form-control mb-2"
+    [(ngModel)]="selectedOrder.productName"
+    readonly>
+
+        <input class="form-control mb-2"
+  [(ngModel)]="selectedOrder.quantity"
+  type="number">
+
+<input class="form-control mb-2"
+  [(ngModel)]="selectedOrder.price"
+  type="number" readonly>
+
+      <button class="btn btn-primary"
+        (click)="updateOrder()">
+        Update
+      </button>
+
+      <button class="btn btn-secondary ms-2"
+        (click)="selectedOrder=null">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,5 @@
+<a routerLink="/products">Products</a>
+
+<a *ngIf="isAdmin()" routerLink="/add-product">Add Product</a>
+
+<a *ngIf="isUser()" routerLink="/orders">My Orders</a>

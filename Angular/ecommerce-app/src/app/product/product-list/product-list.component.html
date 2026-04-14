@@ -1,0 +1,12 @@
+<div *ngFor="let p of products">
+
+  {{p.name}} - ₹{{p.price}}
+
+  <!-- USER -->
+  <button *ngIf="isUser()" (click)="buy(p)">Buy</button>
+
+  <!-- ADMIN -->
+  <button *ngIf="isAdmin()" (click)="edit(p.id)">Edit</button>
+  <button *ngIf="isAdmin()" (click)="delete(p.id)">Delete</button>
+
+</div>

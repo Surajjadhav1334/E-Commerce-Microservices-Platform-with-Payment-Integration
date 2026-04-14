@@ -1,0 +1,32 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg-container {
+  background-image: url('https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?cs=srgb&dl=clouds-cloudy-countryside-236047.jpg&fm=jpg');
+  height: 100%;
+  width: 100%;
+  background-size: cover;        /* 👈 FULL SCREEN FIT */
+  background-position: center;   /* 👈 CENTER */
+  background-repeat: no-repeat;  /* 👈 NO REPEAT */
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* padding-left: 80px;   */
+}
+
+.bg-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+}

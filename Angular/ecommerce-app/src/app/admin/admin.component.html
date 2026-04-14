@@ -1,0 +1,121 @@
+
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <div class="sidebar bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+    <h3>Admin</h3>
+
+    <ul class="nav flex-column">
+
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="view='add'">
+          <i class="fas fa-plus"></i> Add Product
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="view='list'">
+          <i class="fas fa-list"></i> View Products
+        </a>
+      </li>
+
+    </ul>
+
+    <button class="btn btn-danger mt-3 w-100" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div class="content p-4 w-100">
+
+    <h2>Admin Dashboard 👨‍💼</h2>
+
+    <!-- ✅ ADD PRODUCT -->
+    <div *ngIf="view==='add'" class="mt-4">
+      <h4>Add Product</h4>
+
+      <input class="form-control mb-2"
+             [(ngModel)]="newProduct.name"
+             placeholder="Product Name">
+
+      <input class="form-control mb-2"
+             [(ngModel)]="newProduct.price"
+             type="number"
+             placeholder="Price">
+
+      <input class="form-control mb-2"
+             [(ngModel)]="newProduct.quantity"
+             type="number"
+             placeholder="Quantity">
+
+      <button class="btn btn-success" (click)="addProduct()">
+        Add Product
+      </button>
+    </div>
+
+    <!-- ✅ PRODUCT LIST -->
+    <div *ngIf="view==='list'" class="mt-4">
+      <h4>Product List</h4>
+
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of products">
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.quantity}}</td>
+
+            <td>
+              <button class="btn btn-warning btn-sm me-2"
+                      (click)="editProduct(p.id)">
+                Edit
+              </button>
+
+              <button class="btn btn-danger btn-sm"
+                      (click)="deleteProduct(p.id)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ✅ EDIT PRODUCT -->
+    <div *ngIf="selectedProduct" class="mt-4 border p-3 rounded shadow">
+      <h4>Edit Product</h4>
+
+      <input class="form-control mb-2"
+             [(ngModel)]="selectedProduct.name">
+
+      <input class="form-control mb-2"
+             [(ngModel)]="selectedProduct.price"
+             type="number">
+
+      <input class="form-control mb-2"
+             [(ngModel)]="selectedProduct.quantity"
+             type="number">
+
+      <button class="btn btn-primary me-2"
+              (click)="updateProduct()">
+        Update
+      </button>
+
+      <button class="btn btn-secondary"
+              (click)="selectedProduct=null">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+
+</div>

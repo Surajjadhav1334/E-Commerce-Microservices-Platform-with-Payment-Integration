@@ -1,0 +1,14 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+}
+
+.content {
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.nav-link:hover {
+  background: #334155;
+  border-radius: 5px;
+}
